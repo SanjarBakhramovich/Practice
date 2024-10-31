@@ -32,6 +32,10 @@ func HelloHandler(w http.ResponseWriter, r *http.Request) {
 
 
 func main() {
+	InitDB()
+
+	DB.AutoMigrate(&Message{})
+
 	router := mux.NewRouter()
 	router.HandleFunc("/api/hello", HelloHandler).Methods("GET")
 	router.HandleFunc("/api/hello", POSTHandler).Methods("POST")
